@@ -718,7 +718,7 @@ def main():
     os.makedirs(args.output_dir, exist_ok=True)
     
     # Get Moonshot API key
-    moonshot_api_key = "sk-8siAVP459gEFLwVp4NYyGSSHGNqL0mbTtAo221McjJjx0KHe"
+    moonshot_api_key = os.getenv("MOONSHOT_API_KEY")
     if not moonshot_api_key:
         raise ValueError("MOONSHOT_API_KEY environment variable not set")
 
@@ -781,4 +781,4 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    exit(main()) 
+    exit(main())
