@@ -21,6 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class AlphaExpressionMiner:
+    TRUNCATION_THRESHOLD = 0.01
     def __init__(self, credentials_path: str):
         logger.info("Initializing AlphaExpressionMiner")
         self.sess = requests.Session()
@@ -187,7 +188,7 @@ class AlphaExpressionMiner:
                 'delay': 1,
                 'decay': 0,
                 'neutralization': 'INDUSTRY',
-                'truncation': 0.01,
+                'truncation': AlphaExpressionMiner.TRUNCATION_THRESHOLD,
                 'pasteurization': 'ON',
                 'unitHandling': 'VERIFY',
                 'nanHandling': 'OFF',

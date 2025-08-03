@@ -25,6 +25,8 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 class AlphaPolisher:
+    TEMPERATURE = 0.7
+    TRUNCATION_THRESHOLD = 0.08
     def __init__(self, credentials_path: str, moonshot_api_key: str):
         logger.info("Initializing AlphaPolisher...")
         self.sess = requests.Session()
@@ -327,4 +329,4 @@ def main():
         raise
 
 if __name__ == "__main__":
-    main() 
+    main()

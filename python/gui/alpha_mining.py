@@ -10,8 +10,8 @@ import os
 class AlphaMiningParams:
     max_iterations: int = 1000
     population_size: int = 100
-    mutation_rate: float = 0.1
-    crossover_rate: float = 0.8
+    mutation_rate: float = MUTATION_RATE
+    crossover_rate: float = CROSSOVER_RATE
     data_window: int = 252
     min_samples: int = 1000
 
@@ -217,4 +217,4 @@ class AlphaMiner:
             return json.load(f)
 
     def get_optimization_history(self) -> List[Dict[str, Any]]:
-        return self.history 
+        return self.history

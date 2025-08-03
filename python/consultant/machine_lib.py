@@ -350,22 +350,19 @@ class WorldQuantBrain:
                                 exp = "-%s"%exp
                             rec = [alpha_id, exp, sharpe, turnover, fitness, margin, dateCreated, decay]
                             print(rec)
-                            if turnover > 0.7:
+                            if turnover > AlphaEvaluationConfig.TURNOVER_THRESHOLD_HIGH:
                                 rec.append(decay*4)
                                 decay_alphas.append(rec)
-                            elif turnover > 0.6:
+                            elif turnover > AlphaEvaluationConfig.TURNOVER_THRESHOLD_MEDIUM_HIGH:
                                 rec.append(decay*3+3)
                                 decay_alphas.append(rec)
-                            elif turnover > 0.5:
-                                rec.append(decay*3)
-                                decay_alphas.append(rec)
-                            elif turnover > 0.4:
+                            elif turnover > AlphaEvaluationConfig.TURNOVER_THRESHOLD_MEDIUM:
                                 rec.append(decay*2)
                                 decay_alphas.append(rec)
-                            elif turnover > 0.35:
+                            elif turnover > AlphaEvaluationConfig.TURNOVER_THRESHOLD_MEDIUM_LOW:
                                 rec.append(decay+4)
                                 decay_alphas.append(rec)
-                            elif turnover > 0.3:
+                            elif turnover > AlphaEvaluationConfig.TURNOVER_THRESHOLD_LOW:
                                 rec.append(decay+2)
                                 decay_alphas.append(rec)
                             else:
@@ -863,3 +860,12 @@ class WorldQuantBrain:
         
         logging.info(f"Created {len(pools)} pools with {batch_size} alphas per batch")
         return pools
+
+class AlphaEvaluationConfig:
+    SHARPE_THRESHOLD_LOW = -1.2
+    TURNOVER_THRESHOLD_HIGH = 0.7
+    TURNOVER_THRESHOLD_MEDIUM_HIGH = 0.6
+    TURNOVER_THRESHOLD_MEDIUM = 0.5
+    TURNOVER_THRESHOLD_MEDIUM_LOW = 0.4
+    TURNOVER_THRESHOLD_LOW = 0.35
+    TURNOVER_THRESHOLD_VERY_LOW = 0.3

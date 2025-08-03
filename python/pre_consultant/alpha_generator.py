@@ -54,6 +54,9 @@ class RetryQueue:
             time.sleep(1)  # Prevent busy waiting
 
 class AlphaGenerator:
+    # 定义fitness阈值常量
+    FITNESS_THRESHOLD = 1
+    
     def __init__(self, credentials_path: str, moonshot_api_key: str):
         self.sess = requests.Session()
         self.credentials_path = credentials_path  # Store path for reauth
@@ -447,7 +450,7 @@ market_ret = ts_product(1+group_mean(returns,1,market),250)-1;rfr = vec_avg(fnd6
                                     "alpha_data": alpha_data
                                 })
                                 
-                                if fitness > 0.5:
+                                if fitness > self.FITNESS_THRESHOLD:
                                     logging.info(f"Found promising alpha! Fitness: {fitness}")
                                     self.log_hopeful_alpha(info["alpha"], alpha_data)
                                     successful += 1
