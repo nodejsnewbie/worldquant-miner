@@ -12,7 +12,7 @@ target/
 .vscode/
 
 credential.txt
-
+.env
 *.log
 
 .history

@@ -749,12 +749,14 @@ def main():
                 
                 # Save batch results
                 results = generator.get_results()
-                timestamp = int(time.time())
-                output_file = os.path.join(args.output_dir, f'batch_{batch_number}_{timestamp}.json')
-                with open(output_file, 'w') as f:
-                    json.dump(results, f, indent=2)
-                
-                logging.info(f"Batch {batch_number} results saved to {output_file}")
+                if len(results) > 0:
+                    timestamp = int(time.time())
+                    output_file = os.path.join(args.output_dir, f'batch_{batch_number}_{timestamp}.json')
+                    with open(output_file, 'w') as f:
+                        json.dump(results, f, indent=2)
+                    logging.info(f"Batch {batch_number} results saved to {output_file}")
+                else:
+                    logging.info(f"Batch {batch_number} has no results to save")
                 logging.info(f"Batch successful: {batch_successful}")
                 logging.info(f"Total successful alphas: {total_successful}")
                 
